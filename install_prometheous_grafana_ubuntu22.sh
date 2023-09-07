@@ -54,13 +54,14 @@ sudo systemctl enable prometheus
 #sudo systemctl status prometheus
 
 #check firewall port to access via browser
+echo 'Open Ports 9090, 9100 & 3000'
 sudo ufw allow 9090/tcp
 sudo ufw allow 9100/tcp
 sudo ufw allow 3000/tcp
 
 #DOWNLOAD NODE EXPORTER
 
-cd /tmp/
+cd /tmp
 echo 'Downloading node exporter'
 wget https://github.com/prometheus/node_exporter/releases/download/v1.6.1/node_exporter-1.6.1.linux-amd64.tar.gz
 sudo tar xvfz node_exporter-*.*-amd64.tar.gz
@@ -97,7 +98,7 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
-#sudo systemctl status node_exporter
+sudo systemctl status node_exporter
 
 #Configure the Node Exporter as Prmometheus target
 #sudo nano /etc/prometheus/prometheus.yml
@@ -116,7 +117,7 @@ sudo systemctl restart prometheus
 #add Grafana GPG key 
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
 #add the Grafana repository to your APT sources
-sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main" -y
 sudo apt update -y
 #install grafana
 sudo apt install grafana -y
