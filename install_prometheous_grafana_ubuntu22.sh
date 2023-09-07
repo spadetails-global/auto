@@ -2,7 +2,7 @@
 
 #Creating prometheus system users & directory
 sudo apt update -y
-sudo useradd --no-create-home --shell /bin/flase prometheus
+sudo useradd --no-create-home --shell /bin/false prometheus
 sudo mkdir /etc/prometheus
 sudo mkdir /var/lib/prometheus
 sudo chown prometheus:prometheus /var/lib/prometheus
